@@ -89,10 +89,43 @@ export default class MessageContainer extends React.PureComponent {
       imageMessages,
     };
 
+    const container = {
+      display: "flex",
+      marginRight: "20px",
+      marginLeft: "20px"
+    };
+
+    const text = {
+      color: "grey",
+      alignItems: "center",
+      textAlign: "center"
+    };
+
+    const before = {
+      flex: 1,
+      borderBottom: "1px solid #000",
+      marginBottom: "0.5em",
+      marginRight: "0.25em"
+    };
+
+    const after = {
+      flex: 1,
+      borderBottom: "1px solid #000",
+      marginBottom: "0.5em",
+      marginLeft: "0.25em"
+    };
+
     if (this.props.renderMessage) {
       return this.props.renderMessage(messageProps);
     }
-    return <Message {...messageProps} />;
+    return <div>
+      <Message {...messageProps} />
+      <div style={container}>
+        <div style={before} />
+        <div style={text}>Unread Message</div>
+        <div style={after} />
+      </div>
+    </div> 
   };
 
   renderHeaderWrapper = () => <View style={styles.headerWrapper}>{this.renderLoadEarlier()}</View>;
