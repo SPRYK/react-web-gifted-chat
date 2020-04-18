@@ -2308,11 +2308,42 @@ var MessageContainer = /*#__PURE__*/function (_React$PureComponent) {
         imageMessages: imageMessages
       });
 
+      var container = {
+        display: "flex",
+        marginRight: "20px",
+        marginLeft: "20px"
+      };
+      var text = {
+        color: "grey",
+        alignItems: "center",
+        textAlign: "center"
+      };
+      var before = {
+        flex: 1,
+        borderBottom: "1px solid #000",
+        marginBottom: "0.5em",
+        marginRight: "0.25em"
+      };
+      var after = {
+        flex: 1,
+        borderBottom: "1px solid #000",
+        marginBottom: "0.5em",
+        marginLeft: "0.25em"
+      };
+
       if (_this.props.renderMessage) {
         return _this.props.renderMessage(messageProps);
       }
 
-      return /*#__PURE__*/React__default.createElement(Message, messageProps);
+      return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(Message, messageProps), /*#__PURE__*/React__default.createElement("div", {
+        style: container
+      }, /*#__PURE__*/React__default.createElement("div", {
+        style: before
+      }), /*#__PURE__*/React__default.createElement("div", {
+        style: text
+      }, "Unread Message"), /*#__PURE__*/React__default.createElement("div", {
+        style: after
+      })));
     };
 
     _this.renderHeaderWrapper = function () {
