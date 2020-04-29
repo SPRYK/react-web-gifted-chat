@@ -18,6 +18,8 @@ import Color from './Color';
 import WebScrollView from './WebScrollView';
 import TouchableOpacity from './TouchableOpacity';
 
+import { isSameUser } from './utils';
+
 export default class MessageContainer extends React.PureComponent {
   state = {
     showScrollBottom: false,
@@ -89,6 +91,10 @@ export default class MessageContainer extends React.PureComponent {
       imageMessages,
     };
 
+    const hideContainer = {
+      display: "none"
+    };
+
     const container = {
       display: "flex",
       marginRight: "20px",
@@ -118,14 +124,20 @@ export default class MessageContainer extends React.PureComponent {
     if (this.props.renderMessage) {
       return this.props.renderMessage(messageProps);
     }
-    return <div>
+
+    const sameUser = isSameUser(messageProps.currentMessage, messageProps.nextMessage);
+
+    return <View
+      style={[
+        { marginBottom: sameUser ? 2 : 10 },
+      ]}>
       <Message {...messageProps} />
-      <div style={container}>
+      <div style={ item.status ? container : hideContainer}>
         <div style={before} />
         <div style={text}>Unread Message</div>
         <div style={after} />
       </div>
-    </div> 
+    </View> 
   };
 
   renderHeaderWrapper = () => <View style={styles.headerWrapper}>{this.renderLoadEarlier()}</View>;

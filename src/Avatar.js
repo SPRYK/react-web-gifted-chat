@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { StyleSheet, View, ViewPropTypes } from 'react-native';
+import { StyleSheet, View, ViewPropTypes, Text } from 'react-native';
 import GiftedAvatar from './GiftedAvatar';
 import { isSameUser, isSameDay } from './utils';
 
@@ -90,6 +90,7 @@ export default class Avatar extends React.Component {
         ]}
       >
         {this.renderAvatar()}
+        <Text style={{ paddingTop:3 }}>{this.props.currentMessage.user.name}</Text>
       </View>
     );
   }
