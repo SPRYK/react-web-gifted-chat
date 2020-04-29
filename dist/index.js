@@ -633,7 +633,11 @@ var Avatar = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/React__default.createElement(ReactNative.View, {
         style: [styles$3[this.props.position].container, styles$3[this.props.position][computedStyle], this.props.containerStyle[this.props.position]]
-      }, this.renderAvatar());
+      }, this.renderAvatar(), /*#__PURE__*/React__default.createElement(ReactNative.Text, {
+        style: {
+          paddingTop: 3
+        }
+      }, this.props.currentMessage.user.name));
     }
   }]);
 
@@ -955,7 +959,7 @@ var MessageText = /*#__PURE__*/function (_React$Component) {
           onPress: this.onEmailPress
         }]),
         childrenProps: _objectSpread({}, this.props.textProps)
-      }, this.props.currentMessage.text, "xx"));
+      }, this.props.currentMessage.text));
     }
   }]);
 
@@ -2308,6 +2312,9 @@ var MessageContainer = /*#__PURE__*/function (_React$PureComponent) {
         imageMessages: imageMessages
       });
 
+      var hideContainer = {
+        display: "none"
+      };
       var container = {
         display: "flex",
         marginRight: "20px",
@@ -2335,8 +2342,13 @@ var MessageContainer = /*#__PURE__*/function (_React$PureComponent) {
         return _this.props.renderMessage(messageProps);
       }
 
-      return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(Message, messageProps), /*#__PURE__*/React__default.createElement("div", {
-        style: container
+      var sameUser = isSameUser(messageProps.currentMessage, messageProps.nextMessage);
+      return /*#__PURE__*/React__default.createElement(ReactNative.View, {
+        style: [{
+          marginBottom: sameUser ? 2 : 10
+        }]
+      }, /*#__PURE__*/React__default.createElement(Message, messageProps), /*#__PURE__*/React__default.createElement("div", {
+        style: item.status ? container : hideContainer
       }, /*#__PURE__*/React__default.createElement("div", {
         style: before
       }), /*#__PURE__*/React__default.createElement("div", {
